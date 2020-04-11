@@ -1,3 +1,4 @@
+import json
 def estimator(data):
     dataset = data
     def timeLapse():
@@ -7,17 +8,18 @@ def estimator(data):
             timelapse = data["timeToElapse"] * 7
         else:
             timelapse = data["timeToElapse"]
+        timelapse = int(timelapse)
         return timelapse
 
     def impacts():
-        currentlyInfected = data["reportedCases"] * 10
-        infectionsByRequestedTime = currentlyInfected * (2 ** int((timeLapse()/ 3)))
-        severeCasesByRequestedTime = (15 / 100) * infectionsByRequestedTime
-        hospitalBedsByRequestedTime = ((35 / 100) * data["totalHospitalBeds"]) - severeCasesByRequestedTime
-        casesForICUByRequestedTime = (5 / 100) * infectionsByRequestedTime
-        casesForVentilatorsByRequestedTime = (2 / 100) * infectionsByRequestedTime
-        dollarsInFlight = (infectionsByRequestedTime * data["region"]['avgDailyIncomePopulation'] * data["region"][
-          'avgDailyIncomeInUSD']) / data["timeToElapse"]
+        currentlyInfected = int(data["reportedCases"] * 10)
+        infectionsByRequestedTime = int(currentlyInfected * (2 ** (timeLapse()/ 3)))
+        severeCasesByRequestedTime = int((15 / 100) * infectionsByRequestedTime)
+        hospitalBedsByRequestedTime = int(((35 / 100) * data["totalHospitalBeds"]) - severeCasesByRequestedTime)
+        casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
+        casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
+        dollarsInFlight = int((infectionsByRequestedTime * data["region"]['avgDailyIncomePopulation'] * data["region"][
+          'avgDailyIncomeInUSD']) / data["timeToElapse"])
 
         # create impact dictionary
         impact = {"currentlyInfected": int(currentlyInfected),
@@ -31,14 +33,14 @@ def estimator(data):
 
         return impact
     def severeImpacts():
-        currentlyInfected = data["reportedCases"] * 10
-        infectionsByRequestedTime = currentlyInfected * (2 ** int((timeLapse()/ 3)))
-        severeCasesByRequestedTime = (15 / 100) * infectionsByRequestedTime
-        hospitalBedsByRequestedTime = ((35 / 100) * data["totalHospitalBeds"]) - severeCasesByRequestedTime
-        casesForICUByRequestedTime = (5 / 100) * infectionsByRequestedTime
-        casesForVentilatorsByRequestedTime = (2 / 100) * infectionsByRequestedTime
-        dollarsInFlight = (infectionsByRequestedTime * data["region"]['avgDailyIncomePopulation'] * data["region"][
-          'avgDailyIncomeInUSD']) / data["timeToElapse"]
+        currentlyInfected = int(data["reportedCases"] * 10)
+        infectionsByRequestedTime = int(currentlyInfected * (2 ** int((timeLapse()/ 3))))
+        severeCasesByRequestedTime = int((15 / 100) * infectionsByRequestedTime)
+        hospitalBedsByRequestedTime = int(((35 / 100) * data["totalHospitalBeds"]) - severeCasesByRequestedTime)
+        casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
+        casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
+        dollarsInFlight = int((infectionsByRequestedTime * data["region"]['avgDailyIncomePopulation'] * data["region"][
+          'avgDailyIncomeInUSD']) / data["timeToElapse"])
 
         # create impact dictionary
         severeimpact = {"currentlyInfected": int(currentlyInfected),
@@ -54,3 +56,10 @@ def estimator(data):
 
     data = {"data": dataset, "impact": impacts(), "severeImpact": severeImpacts()}
     return data
+
+with open("G:\Covid-19-SDG\Datas.json", 'r') as mydata:
+  data = json.load(mydata)
+
+print(json.dumps(estimator(data), indent=2))
+
+# print(estimator(json.load("G:\Covid-19-SDG\Datas.json")))

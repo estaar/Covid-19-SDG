@@ -30,7 +30,7 @@ def estimator(data):
 
   def severeImpacts():
     currentlyInfected = data["reportedCases"] * 50
-    infectionsByRequestedTime = currentlyInfected * (2 ** int((data["timeToElapse"] / 3)))
+    infectionsByRequestedTime = currentlyInfected * (2 ** int((timelapse / 3)))
     severeCasesByRequestedTime = (15 / 100) * infectionsByRequestedTime
     hospitalBedsByRequestedTime = ((35 / 100) * data["totalHospitalBeds"]) - severeCasesByRequestedTime
     casesForICUByRequestedTime = (5 / 100) * infectionsByRequestedTime

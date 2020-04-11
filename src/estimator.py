@@ -54,12 +54,13 @@ def estimator(data):
 
         return severeimpact
 
-    data = {"data": dataset, "impact": impacts(), "severeImpact": severeImpacts()}
+    datas = {"data": dataset, "impact": impacts(), "severeImpact": severeImpacts()}
+    data = json.dumps(datas)
     return data
 
-with open("G:\Covid-19-SDG\Datas.json", 'r') as mydata:
-  data = json.load(mydata)
-
-print(json.dumps(estimator(data), indent=2))
+# with open("G:\Covid-19-SDG\Datas.json", 'r') as mydata:
+#   data = json.load(mydata)
+#
+# print(type(estimator("G:\Covid-19-SDG\Datas.json")))
 
 # print(estimator(json.load("G:\Covid-19-SDG\Datas.json")))

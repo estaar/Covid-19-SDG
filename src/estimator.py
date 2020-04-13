@@ -18,7 +18,7 @@ def estimator(data):
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
         dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / (timeLapse()*3)
+          'avgDailyIncomeInUSD']) * (timeLapse()*3)
 
         # create impact dictionary
         impact = {'currentlyInfected': int(currentlyInfected),
@@ -39,7 +39,7 @@ def estimator(data):
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
         dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / (timeLapse()*3)
+          'avgDailyIncomeInUSD']) * (timeLapse()*3)
 
         # create impact dictionary
         severeimpact = {'currentlyInfected': int(currentlyInfected),

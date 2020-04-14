@@ -9,14 +9,15 @@ def estimator(data):
             timelapse = data['timeToElapse']
         timelapse = int(timelapse / 3)
         return timelapse
-    def timeLapse1():
+    
+    def timeLapses():
         if data['periodType'] == 'months':
-            timelapse1 = data['timeToElapse'] * 30
+            timelapse = data['timeToElapse'] * 30
         elif data['periodType'] == 'weeks':
-            timelapse1 = data['timeToElapse'] * 7
+            timelapse = data['timeToElapse'] * 7
         else:
-            timelapse1 = data['timeToElapse']
-        return timelapse1
+            timelapse = data['timeToElapse']
+        return timelapse
     
     def impacts():
         currentlyInfected = data['reportedCases'] * 10
@@ -26,7 +27,7 @@ def estimator(data):
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
         dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / timeLapse1())
+          'avgDailyIncomeInUSD']) / timeLapses())
 
         # create impact dictionary
         impact = {'currentlyInfected': int(currentlyInfected),
@@ -47,7 +48,7 @@ def estimator(data):
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
         dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / timeLapse1())
+          'avgDailyIncomeInUSD']) / timeLapses())
 
         # create impact dictionary
         severeimpact = {'currentlyInfected': int(currentlyInfected),

@@ -17,7 +17,7 @@ def estimator(data):
         hospitalBedsByRequestedTime = int(((35 / 100) * data['totalHospitalBeds']) - severeCasesByRequestedTime)
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
-        dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
+        dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
           'avgDailyIncomeInUSD']) / (timeLapse()*3)
 
         # create impact dictionary
@@ -38,7 +38,7 @@ def estimator(data):
         hospitalBedsByRequestedTime = int(((35 / 100) * data['totalHospitalBeds']) - severeCasesByRequestedTime)
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
-        dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
+        dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
           'avgDailyIncomeInUSD']) / (timeLapse()*3)
 
         # create impact dictionary

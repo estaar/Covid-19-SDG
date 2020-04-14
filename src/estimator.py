@@ -12,12 +12,12 @@ def estimator(data):
     
     def timeLapses():
         if data['periodType'] == 'months':
-            timelapse = data['timeToElapse'] * 30
+            timelapses = data['timeToElapse'] * 30
         elif data['periodType'] == 'weeks':
-            timelapse = data['timeToElapse'] * 7
+            timelapses = data['timeToElapse'] * 7
         else:
-            timelapse = data['timeToElapse']
-        return timelapse
+            timelapses = data['timeToElapse']
+        return timelapses
     
     def impacts():
         currentlyInfected = data['reportedCases'] * 10
@@ -26,8 +26,8 @@ def estimator(data):
         hospitalBedsByRequestedTime = int(((35 / 100) * data['totalHospitalBeds']) - severeCasesByRequestedTime)
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
-        dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / timeLapses())
+        dollarsInFlight = int(((infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region'][
+            'avgDailyIncomeInUSD']) / timeLapses())
 
         # create impact dictionary
         impact = {'currentlyInfected': int(currentlyInfected),
@@ -47,8 +47,8 @@ def estimator(data):
         hospitalBedsByRequestedTime = int(((35 / 100) * data['totalHospitalBeds']) - severeCasesByRequestedTime)
         casesForICUByRequestedTime = int((5 / 100) * infectionsByRequestedTime)
         casesForVentilatorsByRequestedTime = int((2 / 100) * infectionsByRequestedTime)
-        dollarsInFlight = int(infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'] * data['region'][
-          'avgDailyIncomeInUSD']) / timeLapses())
+        dollarsInFlight = int(((infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region'][
+            'avgDailyIncomeInUSD']) / timeLapses())
 
         # create impact dictionary
         severeimpact = {'currentlyInfected': int(currentlyInfected),
